@@ -14,7 +14,7 @@ class Carrito {
                 producto: product,
                 cantidad: cantidad
             }
-            this.items.add(item);
+            this.items.push(item);
             return "Agregando productos..."
         }
         else {
@@ -23,13 +23,13 @@ class Carrito {
     }
     subtotal() {
         for (let i = 0; i < this.items.length; i++) {
-            let resultado = this.items[i].product.precio * this.item.cantidad;
+            let resultado = this.items[i].producto.precio * this.items[i].cantidad;
             return resultado;
         }
     }
     total(subtotal) {
         if (this.usuario.esVIP) {
-            return utilidades.calcularDescuento(subtotal, 10)
+            return Utilidades.calcularDescuento(subtotal, 10)
         }
         else {
             return subtotal;
@@ -38,16 +38,15 @@ class Carrito {
 
     }
     recibo() {
-        let listaProductos;
+        let listaProductos = "";
         for (const item of this.items) {
-            listaProductos +=
-                `Producto: ${item.product.nombre}
+            listaProductos = listaProductos + "\n" +
+                `Producto: ${item.producto.nombre}
             Cantidad: ${item.cantidad}
-            Precio: ${Utilidades.formatearPrecio(item.Producto.precio)}
+            Precio: ${Utilidades.formatearPrecio(item.producto.precio)}
             Total: ${this.total(this.subtotal())}`;
         }
-        return
-        `${this.usuario.saludo()}
+        return `${this.usuario.saludo()}
         ${listaProductos}`;
     }
 }

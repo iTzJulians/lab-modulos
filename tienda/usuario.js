@@ -10,4 +10,4 @@ class Usuario{
     }
 }
 
-exports = Usuario;
+module.exports = Usuario;
